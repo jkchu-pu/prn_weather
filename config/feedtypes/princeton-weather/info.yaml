@@ -1,0 +1,42 @@
+---
+title: 'Princeton Weather'
+args:
+    dataModel: PrincetonWeatherDataModel
+    dataRetriever: PrincetonWeatherDataRetriever
+    dataParser: KGOSimpleXMLDataParser
+    simpleMode: false
+    multiValueElements:
+    -   "yweather:forecast"
+    -   item
+    parseMap:
+        class: PrincetonWeatherDataObject
+        key: channel.item
+        includeUnmappedAttributes: false
+        attributes:
+            ndweather:location: title
+            ndweather:text: yweather:condition.@attributes.text
+            ndweather:code: yweather:condition.@attributes.code
+            ndweather:temp: yweather:condition.@attributes.temp
+            ndweather:date: yweather:condition.@attributes.date
+            ndweather:forecasts:
+                class: PrincetonForecastDataObject
+                key: yweather:forecast
+                array: true
+                attributes:
+                    ndforecast:high: "@attributes.high"
+                    ndforecast:low: "@attributes.low"
+                    ndforecast:text: "@attributes.text"
+                    ndforecast:day: "@attributes.day"
+                    ndforecast:date: "@attributes.date"
+                    ndforecast:code: "@attributes.code"
+config:
+-   class: KGOFormElementControllerText
+    options:
+        required: true
+    fields:
+        label: Zip Code
+        description: The Zip Code to fetch weather forcast for
+    controller:
+        upload: true
+        config: zipCode
+...

@@ -1,0 +1,8 @@
+---
+common:
+    pages:           # begins definitions
+        index:       # 'index' is the page ID
+            pageTitle: Princeton Weather    #'pageTitle' defines a static title displayed when viewing this page
+            objdefs:                    #'objdefs' begin the objects definition for this page
+               content: page-index.objdefs.content.default   #content' can be used to organize object definitions into different config areas.  This references page-index.yaml
+...

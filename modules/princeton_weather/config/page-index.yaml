@@ -1,0 +1,64 @@
+---
+common:
+    objdefs:
+        content:
+            default:
+                # sample section for outputting title
+                #-   class: KGODataController
+                    #uiClass: KGOUIHeading
+                    #fields:
+                        #title: Princeton Weather
+                # sample section for outputting html text
+                #-   class: KGOHTMLController
+                    #fields:
+                        #html: Princeton Weather is under construction
+                -   class: KGODataController
+                    uiClass: KGOUIHeading
+                    source:
+                    -   kgoResolveType: method
+                        kgoResolveValue: getWeather
+                    fields:
+                        title:
+                        -   kgoResolveType: value
+                            kgoResolveValue: ndweather:location
+                            kgoResolveProcessors:
+                            -   class: KGORegexDataProcessor
+                                options:
+                                    search: '/ at (.*)/'
+                                    replace: ''     
+                -   class: KGOListController
+                    uiClass: KGOUIList
+                    requiresData: true
+                    fields:
+                        heading:
+                        -   kgoResolveType: localize
+                            kgoResolveValue: princeton_weather.headings.currentWeather
+                        noItemsMessage:
+                        -   kgoResolveType: localize
+                            kgoResolveValue: princeton_weather.titles.noWeather
+                    options:
+                        grouped: true
+                    regions:
+                    -   name: items
+                        contents:
+                        -   source:
+                            -   kgoResolveType: method
+                                kgoResolveValue: getWeather
+                -   class: KGOListController
+                    uiClass: KGOUIList
+                    requiresData: true
+                    fields:
+                        heading:
+                        -   kgoResolveType: localize
+                            kgoResolveValue: princeton_weather.headings.forecasts
+                        noItemsMessage:
+                        -   kgoResolveType: localize
+                            kgoResolveValue: princeton_weather.titles.noWeather
+                    options:
+                        grouped: true
+                    regions:
+                    -   name: items
+                        contents:
+                        -   source:
+                            -   kgoResolveType: method
+                                kgoResolveValue: getForecasts    

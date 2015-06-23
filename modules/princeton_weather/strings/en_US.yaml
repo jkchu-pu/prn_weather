@@ -1,0 +1,12 @@
+---
+common:
+    princeton_weather:
+        headings:
+            forecasts: 5-Day Forecast
+            currentWeather: Current Weather
+        titles:
+            noWeather: Could not get weather
+        error:
+            notConfigured: Unable to get feed. Please check your module configuration.
+            noFeaturedQuestions: Unable to retrieve featured questions
+...
