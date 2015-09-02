@@ -3,7 +3,7 @@ id: princeton/princeton_weather
 title: Test Princeton Weather
 description: Module based on Notre Dame's custom weather module ( Developed by Zach Waterson and Kyle Koser).
 license: commercial
-version: 1.0.0
+version: 1.0.1 # no change but test push to bitbucket jkchu_pu
 require:
     kurogo/kurogo-core:
     -  '2.2.*'
